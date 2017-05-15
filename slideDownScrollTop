@@ -1,0 +1,27 @@
+accordionscrollTop: function () {
+    jQuery('.box-compte .title').on('click', function(e) {
+       e.preventDefault();
+      // REMOVE THE ON CLASS FROM ALL BUTTONS
+      jQuery('.box-compte .title').removeClass('on');
+      
+      // NO MATTER WHAT WE CLOSE ALL OPEN SLIDES
+      jQuery('.box-s-compte').slideUp('normal').removeClass('open');
+      
+      // IF THE NEXT SLIDE WASN'T OPEN THEN OPEN IT
+      if(jQuery(this).next().is(':hidden') == true) {
+
+          // ADD THE ON CLASS TO THE BUTTON
+          jQuery(this).addClass('on');
+          
+          // OPEN THE SLIDE
+          jQuery(this).next().slideDown('normal').addClass('open');
+      } 
+      var offset2 = jQuery(this).offset().top;
+      var heightOpen = jQuery('.box-s-compte:visible').innerHeight();
+      jQuery('html,body').animate({
+          scrollTop: offset2 - (heightOpen + 70)
+      }, 500); 
+
+
+  });
+}
